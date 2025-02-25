@@ -1,24 +1,31 @@
 import { useEffect, useState } from 'react'
 import { Country } from '../types/Country'
 
-interface useCountriesProps {}
+interface useAllCountriesProps {
+    countryData: Country[] | null
+}
 
-interface useCountriesReturns {
+interface useAllCountriesReturns {
     isLoading: boolean
-    isError: boolean | unknown
+    isError: boolean
     data: Country[] | null
 }
-export const useCountries = (): useCountriesReturns => {
+export const useAllCountries = ({
+    countryData,
+}: useAllCountriesProps): useAllCountriesReturns => {
     const [isLoading, setIsLoading] = useState<boolean>(false)
-    const [isError, setIsError] = useState<boolean | unknown>(false)
+    const [isError, setIsError] = useState<boolean>(false)
     const [data, setData] = useState<Country[] | null>(null)
 
     useEffect(() => {
         const getAllCountries = async () => {
             setIsLoading(true)
             try {
+                // const resp = await fetch(
+                //     'https://restcountries.com/v3.1/all?fields=name,capital,population,region,flags'
+                // )
                 const resp = await fetch(
-                    'https://restcountries.com/v3.1/all?fields=name,capital,population,region,flags'
+                    'https://restcountries.com/v3.1/subregion/Northern%20Europe?fields=name,capital,population,region,flags,cca3'
                 )
                 if (!resp.ok) {
                     throw new Error(resp.status + ' - ' + resp.statusText)
@@ -26,17 +33,17 @@ export const useCountries = (): useCountriesReturns => {
                 const resp_data = await resp.json()
                 setData(resp_data)
             } catch (error) {
-                setIsError(error)
+                setIsError(true)
                 console.error(error)
             } finally {
                 setIsLoading(false)
             }
         }
 
-        if (1 > 2) {
+        if (!countryData) {
             getAllCountries()
         }
-    }, [])
+    }, [countryData])
 
     return {
         isLoading,

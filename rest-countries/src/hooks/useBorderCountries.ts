@@ -1,30 +1,28 @@
 import { useEffect, useState } from 'react'
 import { Country } from '../types/Country'
 
-interface useCountryDetailsProps {
-    country: string
+interface useBorderCountriesProps {
+    borderCodes: string[] | undefined
 }
 
-interface useCountryDetailsReturns {
-    isLoading: boolean
-    isError: boolean | unknown
-    data: Country | null
+interface useBorderCountriesReturns {
+    isLoadingBorders: boolean
+    isErrorBorders: boolean | unknown
+    borderCountries: Country[] | null
 }
-export const useCountryDetails = ({
-    country,
-}: useCountryDetailsProps): useCountryDetailsReturns => {
-    const [isLoading, setIsLoading] = useState<boolean>(false)
-    const [isError, setIsError] = useState<boolean | unknown>(false)
-    const [data, setData] = useState<Country | null>(null)
+export const useBorderCountries = ({
+    borderCodes,
+}: useBorderCountriesProps): useBorderCountriesReturns => {
+    const [isLoadingBorders, setIsLoading] = useState<boolean>(false)
+    const [isErrorBorders, setIsError] = useState<boolean | unknown>(false)
+    const [borderCountries, setData] = useState<Country[] | null>(null)
 
     useEffect(() => {
-        const getCountryDetails = async () => {
+        const getBorderCountries = async () => {
             setIsLoading(true)
             try {
                 const resp = await fetch(
-                    `https://restcountries.com/v3.1/name/${encodeURI(
-                        country
-                    )}?fields=name,tld,population,currencies,languages,region,subregion,capital,borders,flags`
+                    `https://restcountries.com/v3.1/alpha?codes=${borderCodes.join()}&fields=name,cca3`
                 )
                 if (!resp.ok) {
                     throw new Error(resp.status + ' - ' + resp.statusText)
@@ -40,7 +38,7 @@ export const useCountryDetails = ({
                     )
                 }
 
-                setData(resp_data[0])
+                setData(resp_data)
             } catch (error) {
                 setIsError(error)
                 console.error(error)
@@ -49,14 +47,14 @@ export const useCountryDetails = ({
             }
         }
 
-        if (country) {
-            getCountryDetails()
+        if (borderCodes && borderCodes.length > 0) {
+            getBorderCountries()
         }
-    }, [country])
+    }, [borderCodes])
 
     return {
-        isLoading,
-        isError,
-        data,
+        borderCountries,
+        isLoadingBorders,
+        isErrorBorders,
     }
 }

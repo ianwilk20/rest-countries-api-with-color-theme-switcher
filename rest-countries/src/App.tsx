@@ -1,28 +1,36 @@
 import { useState } from 'react'
 import { Home } from './routes/Home'
-import { Theme } from './types/Theme'
-
-import sun from '../src/assets/images/sun-solid.svg'
-import moon from '../src/assets/images/moon-outline.svg'
+import { BrowserRouter, Route, Routes } from 'react-router'
+import { CountryDetails } from './routes/CountryDetails.tsx'
+import { ThemeContext } from './contexts/ThemeContext.ts'
+import { Theme } from './types/Theme.ts'
+import { Header } from './components/Header.tsx'
+import { CountryContext } from './contexts/CountryContext.ts'
+import { Theme as RadixTheme } from '@radix-ui/themes'
 
 function App() {
-    const [mode, setMode] = useState<Theme>(Theme.LIGHT)
+    const [theme, setTheme] = useState<Theme>(Theme.LIGHT)
+    const [country, setCountry] = useState<string>('')
+    console.log('Theme: ', theme)
 
     return (
-        <main className="max-w-[100vw] min-w-[100vw] min-h-[100vh] bg-gray-100">
-            <header className="w-full flex justify-between px-4 py-8 shadow-md bg-white">
-                <strong>Where in the world?</strong>
-                <button className="flex items-center gap-1.5 bg-transparent text-sm font-semibold">
-                    {mode === Theme.LIGHT ? (
-                        <img src={moon} className="w-5 h-5" />
-                    ) : (
-                        <img src={sun} className="w-16 h-16" />
-                    )}
-                    Dark Mode
-                </button>
-            </header>
-            <Home />
-        </main>
+        <RadixTheme>
+            <ThemeContext.Provider value={{ theme, setTheme }}>
+                <CountryContext.Provider value={{ country, setCountry }}>
+                    <BrowserRouter>
+                        <Routes>
+                            <Route path="/" element={<Header />}>
+                                <Route
+                                    path="/:country"
+                                    element={<CountryDetails />}
+                                />
+                                <Route index element={<Home />} />
+                            </Route>
+                        </Routes>
+                    </BrowserRouter>
+                </CountryContext.Provider>
+            </ThemeContext.Provider>
+        </RadixTheme>
     )
 }
 

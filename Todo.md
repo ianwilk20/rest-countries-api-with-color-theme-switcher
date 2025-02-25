@@ -1,0 +1,4 @@
+- Fix the region dropdown
+- Get region dropdown filtering
+- Light/dark mode
+- Responsiveness

@@ -3,7 +3,7 @@ export interface Country {
         common: string
         official: string
         nativeName: {
-            eng: {
+            [key: string]: {
                 official: string
                 common: string
             }
@@ -11,9 +11,22 @@ export interface Country {
     }
     capital: string[]
     region: string
+    subregion: string
     population: number
+    currencies: {
+        [key: string]: {
+            name: string
+            symbol: string
+        }
+    }
+    languages: {
+        [key: string]: string
+    }
     flags: {
         png: string
         svg: string
     }
+    borders: string[]
+    tld: string[]
+    cca3: string
 }
