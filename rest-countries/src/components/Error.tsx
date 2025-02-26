@@ -4,7 +4,7 @@ interface ErrorProps {
 
 export const Error = ({ details = 'An error has occurred' }: ErrorProps) => {
     return (
-        <div className="flex flex-col gap-2 items-center">
+        <div className="flex flex-col gap-2 items-center mt-16">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 512 512"

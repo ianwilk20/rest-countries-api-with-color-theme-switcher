@@ -23,7 +23,7 @@ export const Home = () => {
     }
 
     console.log('Search text: ', searchText)
-
+    console.log('Selected region: ', selectedRegion)
     // const filterByRegion = (region: string): void => {
     //     const filteredCounties = data.filter(
     //         (country) => country.region === region
@@ -48,7 +48,7 @@ export const Home = () => {
                         id="country-search"
                         type="text"
                         placeholder="Search for a country..."
-                        className="w-full py-4 pl-16 text-sm before bg-white shadow-md rounded-md"
+                        className="w-full py-4 pl-16 text-sm before bg-white shadow-md rounded-md disabled:bg-gray-200 disabled:text-black disabled:placeholder:text-black"
                         disabled={isLoading || isError}
                         value={searchText}
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
@@ -69,7 +69,7 @@ export const Home = () => {
                 </div>
                 <Dropdown
                     placeholder="Filter by Region"
-                    items={['Africa', 'America', 'Asia', 'Europe', 'Oceania']}
+                    items={['Africa', 'Americas', 'Asia', 'Europe', 'Oceania']}
                     onItemSelected={setSelectedRegion}
                     disabled={isLoading || isError}
                     classes="mt-6 text-black"
