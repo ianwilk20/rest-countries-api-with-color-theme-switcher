@@ -31,7 +31,7 @@ export const CountryDetails = () => {
     console.log('CountryDetails: foundCountry in params: ', paramCountry)
     return (
         <main className="max-w-[100vw] min-w-[100vw] min-h-[100vh] bg-gray-100">
-            <div className="flex flex-col gap-2 px-4 py-6">
+            <div className="flex flex-col gap-2 px-6 py-6">
                 <a
                     href="/"
                     className="flex gap-2 items-center text-black shadow-md bg-white w-fit py-2 px-6 rounded-sm"
@@ -52,7 +52,7 @@ export const CountryDetails = () => {
                     <>
                         <img
                             src={data?.flags.svg}
-                            className="h-56 mt-12 mb-12"
+                            className="h-56 mt-12 mb-12 object-cover"
                         />
                         <h1 className="text-2xl font-extrabold mb-4">
                             {data?.name?.common}
@@ -141,9 +141,9 @@ export const CountryDetails = () => {
                         <div
                             className={`flex ${
                                 borderCountries && borderCountries.length > 0
-                                    ? 'flex-col'
-                                    : 'items-center'
-                            } mt-8 gap-1`}
+                                    ? 'flex-col gap-3'
+                                    : 'items-baseline gap-1'
+                            } mt-8`}
                         >
                             <h2 className="text-lg font-semibold">
                                 Border Countries:
@@ -154,7 +154,7 @@ export const CountryDetails = () => {
                                 <Error details="Error retrieving border countries" />
                             ) : borderCountries &&
                               borderCountries.length > 0 ? (
-                                <ul className="grid grid-cols-3 items-center gap-1">
+                                <ul className="grid grid-cols-3 items-center gap-2">
                                     {borderCountries
                                         .sort((a, b) =>
                                             a.name.common.localeCompare(

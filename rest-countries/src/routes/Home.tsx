@@ -1,9 +1,10 @@
 import { Dropdown } from '../components/Dropdown'
 import { useAllCountries } from '../hooks/useAllCountries'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { Country } from '../types/Country'
 import { Regions } from '../types/Regions'
 import { CountryList } from '../components/CountryList'
+import { ThemeContext } from '../contexts/ThemeContext'
 // import { Dropdown } from '../components/CustomDropdown'
 
 export const Home = () => {
@@ -13,6 +14,7 @@ export const Home = () => {
     })
     const [searchText, setSearchText] = useState<string>('')
     const [selectedRegion, setSelectedRegion] = useState<Regions>(Regions.ANY)
+    const { theme } = useContext(ThemeContext)
     // const [filteredData, setFilteredData] = useState<Country[]>(data)
     // const data: Country[] = countryData as Country[]
     // const isLoading = false
@@ -24,21 +26,7 @@ export const Home = () => {
 
     console.log('Search text: ', searchText)
     console.log('Selected region: ', selectedRegion)
-    // const filterByRegion = (region: string): void => {
-    //     const filteredCounties = data.filter(
-    //         (country) => country.region === region
-    //     )
-    //     setFilteredData(filteredCounties)
-    // }
-
-    // const filterByName = (name: string): void => {
-    //     const filteredCounties = data.filter((country) =>
-    //         country.name.common.includes(name)
-    //     )
-    //     setFilteredData(filteredCounties)
-    // }
-
-    // console.log(filteredData)
+    console.log('Theme: ', theme)
 
     return (
         <main className="max-w-[100vw] min-w-[100vw] min-h-[100vh] bg-gray-100">
