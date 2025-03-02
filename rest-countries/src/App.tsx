@@ -14,7 +14,7 @@ function App() {
     console.log('Theme: ', theme)
 
     return (
-        <RadixTheme>
+        <RadixTheme className="bg-inherit">
             <ThemeContext.Provider value={{ theme, setTheme }}>
                 <CountryContext.Provider value={{ country, setCountry }}>
                     <BrowserRouter>

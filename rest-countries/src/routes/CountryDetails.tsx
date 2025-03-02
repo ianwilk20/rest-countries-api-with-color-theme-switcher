@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react'
 import arrowBlack from '../assets/images/arrow-left-black.svg'
-import arrowWhite from '../assets/images/arrow-left-white.svg'
+import arrowWhite from '../assets/images/arrow-left-offwhite.svg'
 import { ThemeContext } from '../contexts/ThemeContext'
 import { Theme } from '../types/Theme'
 import { useCountryDetails } from '../hooks/useCountryDetails'
@@ -30,18 +30,18 @@ export const CountryDetails = () => {
 
     console.log('CountryDetails: foundCountry in params: ', paramCountry)
     return (
-        <main className="max-w-[100vw] min-w-[100vw] min-h-[100vh] bg-gray-100">
-            <div className="flex flex-col gap-2 px-6 py-6">
-                <a
-                    href="/"
-                    className="flex gap-2 items-center text-black shadow-md bg-white w-fit py-2 px-6 rounded-sm"
+        <main className="w-full bg-gray-100 dark:bg-gray-800/50">
+            <div className="flex flex-col gap-2 px-6 py-6  md:px-12 lg:px-20">
+                <NavLink
+                    to="/"
+                    className="flex gap-2 items-center text-black shadow-md bg-white dark:bg-gray-800 dark:text-gray-100 w-fit py-2 px-6 rounded-sm"
                 >
                     <img
                         src={theme === Theme.LIGHT ? arrowBlack : arrowWhite}
                         className="w-4"
                     />
                     <span>Back</span>
-                </a>
+                </NavLink>
                 {isError ? (
                     <Error
                         details={`Error retrieving details for ${country}`}
@@ -57,7 +57,7 @@ export const CountryDetails = () => {
                         <h1 className="text-2xl font-extrabold mb-4">
                             {data?.name?.common}
                         </h1>
-                        <ul className="flex flex-col gap-2">
+                        <ul className="flex flex-col gap-2 dark:text-gray-100">
                             <li>
                                 <p className="font-light">
                                     <strong className="font-semibold">
@@ -174,7 +174,7 @@ export const CountryDetails = () => {
                                                 }
                                                 key={country.cca3}
                                             >
-                                                <li className="bg-white shadow-md py-2 rounded text-xs flex justify-center">
+                                                <li className="bg-white dark:bg-gray-800 dark:text-gray-100 shadow-md py-2 rounded text-xs flex justify-center">
                                                     {country.name.common}
                                                 </li>
                                             </NavLink>

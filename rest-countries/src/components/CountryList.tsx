@@ -80,7 +80,7 @@ export const CountryList = ({
             )
         } else {
             return (
-                <ul className="flex flex-col items-center gap-8 mt-4 w-full">
+                <ul className="grid grid-cols-[repeat(auto-fit,minmax(calc(var(--spacing)*64),1fr))] justify-items-center gap-y-8 gap-x-4 sm:gap-8 mt-4 w-full">
                     {filteredCounties &&
                         filteredCounties
                             .sort((a, b) =>

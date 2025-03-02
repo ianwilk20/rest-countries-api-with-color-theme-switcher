@@ -21,7 +21,7 @@ export const Dropdown = ({
             <Select.Trigger
                 disabled={disabled}
                 placeholder={placeholder}
-                className={`${classes} w-1/2 py-6 px-4 [&>*]:text-black border-black shadow-md disabled:bg-gray-200`}
+                className={`${classes} w-1/2 sm:w-48 py-[26px] px-4 [&>*]:text-black border-black dark:border-gray-100 shadow-md disabled:bg-gray-200 dark:[&>*]:text-gray-100 dark:bg-gray-800`}
                 variant="surface"
                 color="gray"
             />
