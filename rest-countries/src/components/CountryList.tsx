@@ -43,7 +43,9 @@ export const CountryList = ({
                     })
                     .filter((country) => {
                         if (searchText !== '') {
-                            return country.name.common.includes(searchText)
+                            return country.name.common
+                                .toLowerCase()
+                                .includes(searchText.toLowerCase())
                         }
                         return true
                     })
@@ -85,42 +87,19 @@ export const CountryList = ({
             return (
                 <ul className="grid grid-cols-[repeat(auto-fit,minmax(calc(var(--spacing)*64),calc(var(--spacing)*72)))] xs:grid-cols-[repeat(auto-fit,calc(var(--spacing)*64))] justify-center sm:justify-between justify-items-center gap-y-8 gap-x-4 mt-4 w-full">
                     {filteredCounties &&
-                        filteredCounties
-                            .sort((a, b) =>
-                                a.name.common < b.name.common
-                                    ? -1
-                                    : a.name.common > b.name.common
-                                    ? 1
-                                    : 0
-                            )
-                            .filter((country) => {
-                                if (selectedRegion !== Regions.ANY) {
-                                    return country.region === selectedRegion
+                        filteredCounties.map((country) => (
+                            <CountryTile
+                                country={country.name.common}
+                                population={country.population.toString()}
+                                region={country.region}
+                                capital={
+                                    (country?.capital && country?.capital[0]) ||
+                                    'None'
                                 }
-                                return true
-                            })
-                            .filter((country) => {
-                                if (searchText !== '') {
-                                    return country.name.common.includes(
-                                        searchText
-                                    )
-                                }
-                                return true
-                            })
-                            .map((country) => (
-                                <CountryTile
-                                    country={country.name.common}
-                                    population={country.population.toString()}
-                                    region={country.region}
-                                    capital={
-                                        (country?.capital &&
-                                            country?.capital[0]) ||
-                                        'None'
-                                    }
-                                    flag={country.flags.svg}
-                                    key={country.cca3}
-                                />
-                            ))}
+                                flag={country.flags.svg}
+                                key={country.cca3}
+                            />
+                        ))}
                 </ul>
             )
         }

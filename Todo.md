@@ -1,5 +1,5 @@
-- Light/dark mode
 - Responsiveness
     - On mobile view iphone, padding right is whitespace because there's no scrollbar on mobile
-- Bug that makes it look like no padding is applied to the right side of header
-    - seems to occur when the app is opened in desktop mode then shrunk to mobile view
+        - Bug that makes it look like no padding is applied to the right side of header
+        - seems to occur when the app is opened in desktop mode then shrunk to mobile view
+        - specificlaly happens on Chrome not sure why
