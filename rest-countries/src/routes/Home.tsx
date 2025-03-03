@@ -1,11 +1,9 @@
 import { Dropdown } from '../components/Dropdown'
 import { useAllCountries } from '../hooks/useAllCountries'
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 import { Country } from '../types/Country'
 import { Regions } from '../types/Regions'
 import { CountryList } from '../components/CountryList'
-import { ThemeContext } from '../contexts/ThemeContext'
-// import { Dropdown } from '../components/CustomDropdown'
 
 export const Home = () => {
     const [cachedData, setCachedData] = useState<Country[] | null>(null)
@@ -14,11 +12,6 @@ export const Home = () => {
     })
     const [searchText, setSearchText] = useState<string>('')
     const [selectedRegion, setSelectedRegion] = useState<Regions>(Regions.ANY)
-    const { theme } = useContext(ThemeContext)
-    // const [filteredData, setFilteredData] = useState<Country[]>(data)
-    // const data: Country[] = countryData as Country[]
-    // const isLoading = false
-    // const isError = 'false'
 
     if (data && !cachedData) {
         setCachedData(data)
@@ -28,15 +21,15 @@ export const Home = () => {
     console.log('Selected region: ', selectedRegion)
 
     return (
-        <section className="w-full dark:bg-gray-800/50 h-full">
-            <div className="flex flex-col gap-2 px-4 py-6 md:px-12 lg:px-20">
+        <section className="w-full dark:bg-gray-800 h-full">
+            <div className="flex flex-col gap-2 px-4 py-6 md:px-12 lg:px-24">
                 <div className="flex flex-col gap-6 sm:flex-row sm:justify-between">
                     <div className="relative w-full max-w-[calc(var(--spacing)*108)]">
                         <input
                             id="country-search"
                             type="text"
                             placeholder="Search for a country..."
-                            className="w-full py-4 pl-16 text-sm before bg-white dark:bg-gray-800 shadow-md rounded-md disabled:bg-gray-200 disabled:text-black disabled:placeholder:text-black dark:placeholder:text-gray-100"
+                            className="w-full py-4 pl-16 text-sm before bg-white hover:bg-gray-50 dark:bg-dark-gray-secondary dark:hover:bg-dark-gray-secondary-hover shadow-md rounded-md disabled:bg-gray-200 disabled:hover:bg-gray-200 disabled:text-black disabled:placeholder:text-black dark:placeholder:text-gray-100"
                             disabled={isLoading || isError}
                             value={searchText}
                             onChange={(

@@ -1,31 +1,25 @@
-import { useContext, useEffect } from 'react'
-import { ThemeContext } from '../contexts/ThemeContext'
+import { useEffect, useState } from 'react'
 import { Theme } from '../types/Theme'
 import sun from '../../src/assets/images/sun-regular.svg'
 import moon from '../../src/assets/images/moon-outline.svg'
 import { Outlet } from 'react-router'
 
 export const Header = () => {
-    const { theme, setTheme } = useContext(ThemeContext)
-    console.log('Theme: ', theme)
+    const [theme, setTheme] = useState<Theme>(Theme.LIGHT)
 
     useEffect(() => {
-        document.documentElement.classList.toggle(
-            'dark',
-            theme === Theme.DARK ||
-                window.matchMedia('(prefers-color-scheme: dark)').matches
-        )
+        document.documentElement.classList.toggle('dark', theme === Theme.DARK)
     }, [theme])
 
     return (
         <>
             <main>
-                <header className="w-full flex justify-between px-4 py-8 md:py-6 md:px-12 lg:px-20 shadow-md bg-white dark:bg-gray-800 dark:text-gray-100">
-                    <h1 className="font-extrabold text-sm xs:text-base sm:text-lg">
+                <header className="w-full flex items-center justify-between px-4 py-8 md:py-4 md:px-12 lg:px-24 shadow-md bg-white dark:bg-dark-gray-secondary dark:text-gray-100">
+                    <h1 className="font-extrabold text-sm xs:text-base sm:text-lg pl-2 sm:pl-0">
                         Where in the world?
                     </h1>
                     <button
-                        className="flex items-center gap-1.5 bg-transparent text-sm lg:text-base sm:text-md font-semibold dark:font-normal dark:text-gray-100 cursor-pointer"
+                        className="flex items-center gap-1.5 bg-transparent text-sm lg:text-base sm:text-md font-semibold dark:font-normal dark:text-gray-100 cursor-pointer hover:bg-gray-100 dark:hover:bg-dark-gray-secondary-hover transition py-2 px-2 rounded"
                         onClick={() =>
                             setTheme &&
                             setTheme((theme) =>
@@ -33,17 +27,13 @@ export const Header = () => {
                             )
                         }
                     >
-                        {theme === Theme.LIGHT ? (
-                            <>
-                                <img src={moon} className="w-4 h-4" />
-                                Dark Mode
-                            </>
-                        ) : (
-                            <>
-                                <img src={sun} className="w-4 h-4" />
-                                Light Mode
-                            </>
-                        )}
+                        <>
+                            <img
+                                src={theme === Theme.LIGHT ? moon : sun}
+                                className="w-4 h-4"
+                            />
+                            {theme === Theme.LIGHT ? 'Dark Mode' : 'Light Mode'}
+                        </>
                     </button>
                 </header>
                 <Outlet />

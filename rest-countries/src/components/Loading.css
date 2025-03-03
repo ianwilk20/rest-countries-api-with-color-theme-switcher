@@ -17,6 +17,11 @@
     top: 0;
     animation: animloader 2s linear infinite;
 }
+
+.dark .loader::before,
+.dark .loader::after {
+    background: var(--bg-light-gray);
+}
 .loader::after {
     animation-delay: 1s;
 }

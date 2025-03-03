@@ -22,7 +22,7 @@ export const CountryTile = ({
     return (
         <NavLink
             to={`/${encodeURI(country.toLowerCase())}`}
-            className="flex flex-col rounded-md bg-white dark:bg-gray-800 dark:text-gray-100 w-full max-w-72 shadow-md cursor-pointer transition-[all_0.5_ease] hover:scale-105 hover:shadow-lg"
+            className="flex flex-col rounded-md bg-white dark:bg-dark-gray-primary dark:hover:bg-dark-gray-secondary dark:text-gray-100 w-full shadow-md cursor-pointer transition-[all_0.5_ease] hover:scale-105 hover:shadow-lg"
             onClick={() => setCountry && setCountry(country)}
         >
             <li>

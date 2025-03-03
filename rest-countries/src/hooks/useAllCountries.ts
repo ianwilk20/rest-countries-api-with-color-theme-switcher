@@ -27,6 +27,10 @@ export const useAllCountries = ({
                 const resp = await fetch(
                     'https://restcountries.com/v3.1/alpha?codes=170,no,est,pe,com,gum,ton?fields=name,capital,population,region,flags,cca3'
                 )
+                //error resp
+                // const resp = await fetch(
+                //     'https://restcountries.com/v3.1/2183909128039812'
+                // )
                 if (!resp.ok) {
                     throw new Error(resp.status + ' - ' + resp.statusText)
                 }

@@ -17,11 +17,13 @@ export const Dropdown = ({
     classes,
 }: DropdownProps) => {
     return (
-        <Select.Root>
+        <Select.Root
+            onValueChange={(value: string) => onItemSelected(value as Regions)}
+        >
             <Select.Trigger
                 disabled={disabled}
                 placeholder={placeholder}
-                className={`${classes} w-1/2 sm:w-48 py-[26px] px-4 [&>*]:text-black border-black dark:border-gray-100 shadow-md disabled:bg-gray-200 dark:[&>*]:text-gray-100 dark:bg-gray-800`}
+                className={`${classes} w-1/2 sm:w-48 py-[26px] px-4 [&>*]:text-black dark:disabled:[&>*]:text-black border-black bg-white hover:bg-gray-50 dark:border-gray-100 shadow-md disabled:bg-gray-200 disabled:hover:bg-gray-200 dark:[&>*]:text-gray-100 dark:bg-dark-gray-secondary dark:hover:bg-dark-gray-secondary-hover`}
                 variant="surface"
                 color="gray"
             />
@@ -29,11 +31,7 @@ export const Dropdown = ({
                 <Select.Group>
                     {items &&
                         items.map((item) => (
-                            <Select.Item
-                                key={item}
-                                onClick={() => onItemSelected(item as Regions)}
-                                value={item}
-                            >
+                            <Select.Item key={item} value={item}>
                                 {item}
                             </Select.Item>
                         ))}

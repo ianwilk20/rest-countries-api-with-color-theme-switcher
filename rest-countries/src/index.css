@@ -14,21 +14,23 @@
     --font-display: 'Nunito Sans', system-ui, Avenir, Helvetica, Arial,
         sans-serif;
     --breakpoint-xs: 500px;
+    --color-dark-gray-primary: var(--bg-dark-gray);
+    --color-dark-gray-secondary: var(--bg-lighter-dark-gray);
+    --color-dark-gray-secondary-hover: var(--bg-lightest-dark-gray);
 }
 
 .radix-themes {
     --default-font-family: 'Nunito Sans';
-    --gray-2: #1e2939;
+    --gray-2: #313f54;
 }
 
 :root {
     font-family: var(--font-display) !important;
-    --bg-dark-gray: color-mix(
-        in oklab,
-        var(--color-gray-800) /* oklch(0.278 0.033 256.848) = #1e2939 */ 80%,
-        transparent
-    );
-    --bg-light-gray: #f3f4f6;
+    --bg-dark-gray: #1e2939;
+    --bg-lighter-dark-gray: #313f54;
+    --bg-lightest-dark-gray: #40526d;
+    --bg-offwhite: #f3f4f6;
+    --bg-light-gray: #f9fafb;
 }
 
 .dark body {
@@ -40,6 +42,7 @@ body {
     min-width: 100vw;
     min-height: 100vh;
     overflow-x: hidden;
-    padding-right: 17px; /* Scrollbar size */
-    background-color: var(--bg-light-gray);
+    overflow-y: auto;
+    /* padding-right: 17px; Scrollbar size */
+    background-color: var(--bg-offwhite);
 }
