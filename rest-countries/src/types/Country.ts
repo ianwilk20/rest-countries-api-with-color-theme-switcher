@@ -25,6 +25,7 @@ export interface Country {
     flags: {
         png: string
         svg: string
+        alt: string
     }
     borders: string[]
     tld: string[]

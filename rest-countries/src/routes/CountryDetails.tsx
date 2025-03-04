@@ -46,6 +46,7 @@ export const CountryDetails = () => {
                         <img
                             src={data?.flags.svg}
                             className=" mt-12 mb-12 object-cover max-w-[calc(var(--spacing)*108)] xl:max-w-[calc(var(--spacing)*150)] h-auto lg:m-0"
+                            alt={data?.flags.alt}
                         />
                         <div className="w-full flex flex-col lg:max-w-[calc(var(--spacing)*180)] justify-center">
                             <h1 className="text-2xl font-extrabold mb-4">

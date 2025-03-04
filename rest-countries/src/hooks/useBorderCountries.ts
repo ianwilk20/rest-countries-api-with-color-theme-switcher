@@ -22,7 +22,7 @@ export const useBorderCountries = ({
             setIsLoading(true)
             try {
                 const resp = await fetch(
-                    `https://restcountries.com/v3.1/alpha?codes=${borderCodes.join()}&fields=name,cca3`
+                    `https://restcountries.com/v3.1/alpha?codes=${borderCodes?.join()}&fields=name,cca3`
                 )
                 if (!resp.ok) {
                     throw new Error(resp.status + ' - ' + resp.statusText)

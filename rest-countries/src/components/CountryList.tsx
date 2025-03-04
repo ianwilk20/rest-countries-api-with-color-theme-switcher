@@ -85,7 +85,7 @@ export const CountryList = ({
             )
         } else {
             return (
-                <ul className="grid grid-cols-[repeat(auto-fit,minmax(calc(var(--spacing)*64),calc(var(--spacing)*72)))] xs:grid-cols-[repeat(auto-fit,calc(var(--spacing)*64))] justify-center sm:justify-between justify-items-center gap-y-8 gap-x-4 mt-4 w-full">
+                <ul className="grid grid-cols-[repeat(auto-fit,minmax(calc(var(--spacing)*64),calc(var(--spacing)*72)))] xs:grid-cols-[repeat(auto-fit,calc(var(--spacing)*64))] justify-center sm:justify-between lg:justify-start lg:gap-x-16 xl:gap-x-28 gap-8 mt-4 w-full">
                     {filteredCounties &&
                         filteredCounties.map((country) => (
                             <CountryTile
@@ -97,6 +97,7 @@ export const CountryList = ({
                                     'None'
                                 }
                                 flag={country.flags.svg}
+                                flagAlt={country.flags.alt}
                                 key={country.cca3}
                             />
                         ))}

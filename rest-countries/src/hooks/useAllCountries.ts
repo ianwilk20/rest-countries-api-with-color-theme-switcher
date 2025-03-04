@@ -15,22 +15,15 @@ export const useAllCountries = ({
 }: useAllCountriesProps): useAllCountriesReturns => {
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [isError, setIsError] = useState<boolean>(false)
-    const [data, setData] = useState<Country[] | null>(null)
+    const [data, setData] = useState<Country[] | null>(countryData)
 
     useEffect(() => {
         const getAllCountries = async () => {
             setIsLoading(true)
             try {
                 const resp = await fetch(
-                    'https://restcountries.com/v3.1/all?fields=name,capital,population,region,flags'
+                    'https://restcountries.com/v3.1/all?fields=name,capital,population,region,flags,cca3'
                 )
-                // const resp = await fetch(
-                //     'https://restcountries.com/v3.1/alpha?codes=170,no,est,pe,com,gum,ton?fields=name,capital,population,region,flags,cca3'
-                // )
-                //error resp
-                // const resp = await fetch(
-                //     'https://restcountries.com/v3.1/2183909128039812'
-                // )
                 if (!resp.ok) {
                     throw new Error(resp.status + ' - ' + resp.statusText)
                 }
@@ -45,9 +38,10 @@ export const useAllCountries = ({
         }
 
         if (!countryData) {
+            console.log('calling fetch')
             getAllCountries()
         }
-    }, [countryData])
+    }, [countryData, data])
 
     return {
         isLoading,
