@@ -33,7 +33,7 @@ export const CountryTile = React.memo(
                     <img
                         src={flag}
                         className="rounded-tl-md rounded-tr-md w-full h-44 object-cover"
-                        alt={flagAlt}
+                        alt={flagAlt || `Flag of ${country}`}
                         loading="lazy"
                     />
                     <ul className="flex flex-col gap-0.5 px-6 pb-10 pt-6">
