@@ -24,12 +24,12 @@ export const CountryTile = React.memo(
         const { setCountry } = useContext(CountryContext)
 
         return (
-            <NavLink
-                to={`/${encodeURI(country.toLowerCase())}`}
-                className="flex flex-col rounded-md bg-white dark:bg-dark-gray-primary dark:hover:bg-dark-gray-secondary dark:text-gray-100 w-full shadow-md cursor-pointer transition-[all_0.5_ease] hover:scale-105 hover:shadow-lg"
-                onClick={() => setCountry && setCountry(country)}
-            >
-                <li>
+            <li className="flex flex-col rounded-md bg-white dark:bg-dark-gray-primary dark:hover:bg-dark-gray-secondary dark:text-gray-100 w-full shadow-md cursor-pointer transition-[all_0.5_ease] hover:scale-105 hover:shadow-lg">
+                <NavLink
+                    to={`/${encodeURI(country.toLowerCase())}`}
+                    className="flex flex-col rounded-md bg-white dark:bg-dark-gray-primary dark:hover:bg-dark-gray-secondary dark:text-gray-100 w-full shadow-md cursor-pointer transition-[all_0.5_ease] hover:scale-105 hover:shadow-lg"
+                    onClick={() => setCountry && setCountry(country)}
+                >
                     <img
                         src={flag}
                         className="rounded-tl-md rounded-tr-md w-full h-44 object-cover"
@@ -55,8 +55,8 @@ export const CountryTile = React.memo(
                             {capital}
                         </li>
                     </ul>
-                </li>
-            </NavLink>
+                </NavLink>
+            </li>
         )
     }
 )

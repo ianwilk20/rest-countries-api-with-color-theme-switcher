@@ -31,6 +31,11 @@ export const Header = () => {
                             <img
                                 src={theme === Theme.LIGHT ? moon : sun}
                                 className="w-4 h-4"
+                                alt={
+                                    theme === Theme.LIGHT
+                                        ? 'Icon of an animated crescent moon'
+                                        : 'Icon of an animated sun'
+                                }
                             />
                             {theme === Theme.LIGHT ? 'Dark Mode' : 'Light Mode'}
                         </>

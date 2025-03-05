@@ -68,6 +68,12 @@ I learned some features of the new Tailwind v4 (via the Vite plugin). Rather tha
 
 A neat thing that was simpler than I imagined, was how to add a dark mode to the site. With Tailwind v4, you can add `@custom-variant dark (&:where(.dark, .dark *));` to your main css file so that you can toggle dark mode manually, which is how it should be done for this app. Then, for any element you want to define a dark variant for you can use the `dark:*` utility, ex. `dark:text-white`.
 
+
+Optimizations:
+- Wrapping my CountryTile component with React.memo to prevent unnecessary re-renders. Doing so will ensure that the component only re-renders when its props change.
+- Using the `loading="lazy"` attribute on <img> tags to defer loading images until they are close to being in the viewport. This has shown to significantly reduce the initial load time for the images on the homepage, which were all previously loading sequentially and took up too 100 seconds to load.
+- Potential improvement: For large lists, using a virtualization library like react-window or react-virtualized. I read that these libraries only render the items that are currently visible in the viewport, which can greatly improve performance.
+
 ### Continued development
 
 I'd like to continue to learn about React Router and the capabilites of the Radix UI component library.

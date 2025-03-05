@@ -46,7 +46,7 @@ export const CountryDetails = () => {
                         <img
                             src={data?.flags.svg}
                             className=" mt-12 mb-12 object-cover max-w-[calc(var(--spacing)*108)] xl:max-w-[calc(var(--spacing)*150)] h-auto lg:m-0"
-                            alt={data?.flags.alt}
+                            alt={data?.flags.alt || `Flag of ${country}`}
                         />
                         <div className="w-full flex flex-col lg:max-w-[calc(var(--spacing)*180)] justify-center">
                             <h1 className="text-2xl font-extrabold mb-4">
@@ -152,7 +152,7 @@ export const CountryDetails = () => {
                                     <Error details="Error retrieving border countries" />
                                 ) : borderCountries &&
                                   borderCountries.length > 0 ? (
-                                    <ul className="grid grid-cols-3 items-center gap-2 lg:flex">
+                                    <ul className="grid grid-cols-3 items-center gap-2 lg:flex lg:flex-wrap">
                                         {borderCountries
                                             .sort((a, b) =>
                                                 a.name.common.localeCompare(
@@ -160,23 +160,24 @@ export const CountryDetails = () => {
                                                 )
                                             )
                                             .map((country) => (
-                                                <NavLink
-                                                    to={`/${encodeURI(
-                                                        country.name.common.toLowerCase()
-                                                    )}`}
-                                                    onClick={() =>
-                                                        setCountry &&
-                                                        setCountry(
-                                                            country.name.common
-                                                        )
-                                                    }
-                                                    key={country.cca3}
-                                                    className="bg-white dark:bg-dark-gray-secondary dark:text-gray-100 shadow-md rounded hover:bg-gray-100 dark:hover:bg-dark-gray-secondary-hover transition"
-                                                >
-                                                    <li className="py-2 text-xs flex justify-center lg:px-2">
+                                                <li className="bg-white dark:bg-dark-gray-secondary dark:text-gray-100 shadow-md rounded hover:bg-gray-100 dark:hover:bg-dark-gray-secondary-hover transition">
+                                                    <NavLink
+                                                        to={`/${encodeURI(
+                                                            country.name.common.toLowerCase()
+                                                        )}`}
+                                                        onClick={() =>
+                                                            setCountry &&
+                                                            setCountry(
+                                                                country.name
+                                                                    .common
+                                                            )
+                                                        }
+                                                        key={country.cca3}
+                                                        className="py-2 text-xs flex justify-center lg:px-2"
+                                                    >
                                                         {country.name.common}
-                                                    </li>
-                                                </NavLink>
+                                                    </NavLink>
+                                                </li>
                                             ))}
                                     </ul>
                                 ) : (
