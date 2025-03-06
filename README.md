@@ -31,11 +31,26 @@ Users should be able to:
 
 ### Screenshot
 
+Mobile:
+
+![Mobile home page light mode](/design/completed/mobile-home-light.png)
+![Mobile home page dark mode](/design/completed/mobile-home-dark.png)
+![Mobile details page light mode](/design/completed/mobile-details-light.png)
+![Mobile details page dark mode](/design/completed/mobile-details-dark.png)
+
+
+Desktop:
+
+![Desktop home page light mode](/design/completed/desktop-home-light.png)
+![Desktop home page dark mode](/design/completed/desktop-home-dark.png)
+![Desktop details page light mode](/design/completed/desktop-details-light.png)
+![Desktop details page dark mode](/design/completed/desktop-details-dark.png)
+
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- [Solution URL](https://github.com/ianwilk20/rest-countries-api-with-color-theme-switcher)
+- [Live Site URL](https://country-finder-ianwilk20.netlify.app/)
 
 ## My process
 
@@ -68,15 +83,18 @@ I learned some features of the new Tailwind v4 (via the Vite plugin). Rather tha
 
 A neat thing that was simpler than I imagined, was how to add a dark mode to the site. With Tailwind v4, you can add `@custom-variant dark (&:where(.dark, .dark *));` to your main css file so that you can toggle dark mode manually, which is how it should be done for this app. Then, for any element you want to define a dark variant for you can use the `dark:*` utility, ex. `dark:text-white`.
 
+While exploring ways to optimize the app, I learned the basics of how React renders components and the purpose of the virtual DOM. Essentially, the virtual DOM was created to solve performance problems caused by directly manipulating the real DOM. When React renders a component, it generates both the previous and current states in the virtual DOM. It then compares these states through a process called 'diffing' to identify the necessary changes. Finally, it updates only the parts of the real DOM that need modification to reflect the new state - this process is called 'reconciliation'.
+
 
 Optimizations:
 - Wrapping my CountryTile component with React.memo to prevent unnecessary re-renders. Doing so will ensure that the component only re-renders when its props change.
 - Using the `loading="lazy"` attribute on <img> tags to defer loading images until they are close to being in the viewport. This has shown to significantly reduce the initial load time for the images on the homepage, which were all previously loading sequentially and took up too 100 seconds to load.
 - Potential improvement: For large lists, using a virtualization library like react-window or react-virtualized. I read that these libraries only render the items that are currently visible in the viewport, which can greatly improve performance.
+- Overall improvement: Use babel-plugin-react-compiler
 
 ### Continued development
 
-I'd like to continue to learn about React Router and the capabilites of the Radix UI component library.
+I'd like to continue to learn about React Router and the capabilites of the Radix UI component library. I also read about the [babel-plugin-react-compiler](https://www.npmjs.com/package/babel-plugin-react-compiler) recently and how it is able to optimize React apps, which can mean foregoing the memoization of components. I haven't used it for this project, but I did quickly install it and tested it out and it makes using component memoization useless because it applies that and other optimizations where needed. To visualize the rerenders and my comparison I used the [React Scan](https://github.com/aidenybai/react-scan) tool.
 
 ### Useful resources
 

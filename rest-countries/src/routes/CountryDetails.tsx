@@ -13,7 +13,6 @@ export const CountryDetails = () => {
     const { data, isLoading, isError } = useCountryDetails({
         country: country,
     })
-    console.log('CountryDetails: context country: ', country)
 
     useEffect(() => {
         if (!country && typeof setCountry === 'function' && paramCountry) {
@@ -24,7 +23,6 @@ export const CountryDetails = () => {
     const { borderCountries, isLoadingBorders, isErrorBorders } =
         useBorderCountries({ borderCodes: data?.borders })
 
-    console.log('CountryDetails: foundCountry in params: ', paramCountry)
     return (
         <section className="w-full bg-gray-100 dark:bg-gray-800">
             <div className="flex flex-col gap-2 px-6 py-6 md:px-12 lg:px-20">
@@ -160,7 +158,10 @@ export const CountryDetails = () => {
                                                 )
                                             )
                                             .map((country) => (
-                                                <li className="bg-white dark:bg-dark-gray-secondary dark:text-gray-100 shadow-md rounded hover:bg-gray-100 dark:hover:bg-dark-gray-secondary-hover transition">
+                                                <li
+                                                    key={country.cca3}
+                                                    className="bg-white dark:bg-dark-gray-secondary dark:text-gray-100 shadow-md rounded hover:bg-gray-100 dark:hover:bg-dark-gray-secondary-hover transition"
+                                                >
                                                     <NavLink
                                                         to={`/${encodeURI(
                                                             country.name.common.toLowerCase()
@@ -172,7 +173,6 @@ export const CountryDetails = () => {
                                                                     .common
                                                             )
                                                         }
-                                                        key={country.cca3}
                                                         className="py-2 text-xs flex justify-center lg:px-2"
                                                     >
                                                         {country.name.common}

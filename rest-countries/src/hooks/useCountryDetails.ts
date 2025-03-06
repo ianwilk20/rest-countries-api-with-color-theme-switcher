@@ -40,7 +40,15 @@ export const useCountryDetails = ({
                     )
                 }
 
-                setData(resp_data[0])
+                const foundCountry = resp_data.find((cntry) =>
+                    cntry.name.common
+                        .toLowerCase()
+                        .includes(country.toLowerCase())
+                )
+                if (!foundCountry) {
+                    throw new Error('Cannot find the country specified')
+                }
+                setData(foundCountry)
             } catch (error) {
                 setIsError(error)
                 console.error(error)
