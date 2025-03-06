@@ -101,6 +101,7 @@ I'd like to continue to learn about React Router and the capabilites of the Radi
 - [CSS Grid Layout Guide](https://css-tricks.com/snippets/css/complete-guide-grid/) - These docs on the grid layout helped me with the desktop layout
 - [Select component](https://www.radix-ui.com/themes/docs/components/select) - These docs for the select component helped in designing the region dropdown for the homepage
 - [Tailwind - Dark mode](https://tailwindcss.com/docs/dark-mode) - Tailwind docs on how to set up dark mode for a project
+- [Virtual DOM](https://old.million.dev/blog/virtual-dom) - A very informative post about what the virtual DOM is and how it works
 
 ### Developer notes
 Project bootstrapped by:
